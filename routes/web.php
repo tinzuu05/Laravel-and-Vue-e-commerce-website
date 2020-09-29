@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/', 'FrontController@index'); //首頁
 
 Route::get('/news', 'FrontController@news'); //新聞頁
-Route::get('/news_info', 'FrontController@news_info'); //新聞內頁
+Route::get('/news_info/{news_id}', 'FrontController@news_info'); //新聞內頁
 Route::get('/contact_us', 'FrontController@contact_us'); //聯絡我們
