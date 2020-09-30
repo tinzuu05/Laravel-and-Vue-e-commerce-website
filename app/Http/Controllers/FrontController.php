@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,5 +31,29 @@ class FrontController extends Controller
     public function contact_us()
     {
         return view('front/contact_us');
+    }
+
+    public function store_contact(Request $request)
+    {
+        // DB::table('place')->insert(
+        //     ['email' => $request->email,
+        //     'location' => $request->location,
+        //     'image_url' => '',
+        //     'place_name' => $request->place_name,
+        //     'place_description' => $request->place_description]
+        // );
+
+        // ORM基本新增
+        // $new_place = new Place();
+        // $new_place -> email = $request ->email;
+        // $new_place -> location = $request ->location;
+        // $new_place -> image_url = '';
+        // $new_place -> place_name = $request ->place_name;
+        // $new_place -> place_description = $request ->place_description;
+
+        // ORM create
+        Place::create($request->all());
+
+        return "新增成功";
     }
 }

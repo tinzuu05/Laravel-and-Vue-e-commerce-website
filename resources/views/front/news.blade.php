@@ -21,7 +21,6 @@
                         </div>
                     </div>
                     @endforeach
-                    {{ $news_list->links()}}
 
                     {{-- <div class="col-md-4">
                         <div class="news_list">
@@ -123,6 +122,7 @@
                         </div>
                     </div> --}}
                 </div>
+                {{$news_list->links('vendor.pagination.bootstrap-4')}}
             </div>
         </section>
 @endsection

@@ -47,7 +47,7 @@
                             <h4>{{$news->sub_title}}</h4>
                             <img width="100%" src="{{$news->image_url}}" alt="圖片建議尺寸: 1000 x 567">
                             <p class="news_content">{{$news->content}}</p>
-                            <a class="btn btn-success" href="/news_info" role="button">點擊查看更多 &raquo;</a>
+                            <a class="btn btn-success" href="/news_info/{{$news->id}}" role="button">點擊查看更多 &raquo;</a>
                         </div>
                     </div>
                     @endforeach
