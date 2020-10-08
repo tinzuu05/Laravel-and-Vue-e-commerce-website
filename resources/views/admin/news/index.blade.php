@@ -21,6 +21,7 @@
             <th>標題</th>
             <th>圖片</th>
             <th>副標題</th>
+            <th>created_at</th>
             <th>功能</th>
         </tr>
     </thead>
@@ -29,11 +30,18 @@
         @foreach ($news_list as $news)
         <tr>
             <td>{{$news->title}}</td>
+            {{-- 第一種顯示檔案的方式 --}}
+            {{-- <td><img width="200" src="{{asset('/storage/'.$news->image_url)}}" alt=""></td> --}}
+
+            {{-- 第二種顯示檔案方式 --}}
             <td><img width="200" src="{{$news->image_url}}" alt=""></td>
             <td>{{$news->sub_title}}</td>
-        <td><a href="news/edit{{$news->id}}" class="btn btn-sm btn-primary">編輯</a>
-            <button class="btn btn-danger btn-sm">刪除</button>
+            <td>{{$news->created_at}}</td>
+        <td>
+            <a href="news/edit/{{$news->id}}" class="btn btn-sm btn-primary">編輯</a>
+            <a id="delete" href="news/destroy/{{$news->id}}" class="btn btn-sm btn-danger">刪除</a>
         </td>
+
 
         </tr>
         @endforeach
@@ -49,4 +57,10 @@
     $('#example').DataTable();
 } );
 </script>
+
+<script>
+var delete_btns = document.querySelectorAll('#delete')
+
+</script>
+
 @endsection
