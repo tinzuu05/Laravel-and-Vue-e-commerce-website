@@ -8,11 +8,11 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">後臺</a></li>
-      <li class="breadcrumb-item active" aria-current="page">最新消息管理</li>
+      <li class="breadcrumb-item active" aria-current="page">產品管理</li>
     </ol>
   </nav>
 
-  <a href="/admin/news/create" class="btn btn-success mb-3">新增最新消息</a>
+  <a href="/admin/product/create" class="btn btn-success mb-3">新增產品</a>
 
   <table id="example" class="table table-striped table-bordered" style="width:100%">
     {{-- {{$news_list}} --}}
@@ -20,30 +20,33 @@
         <tr>
             <th>標題</th>
             <th>圖片</th>
-            <th>副標題</th>
-            <th>created_at</th>
-            <th>功能</th>
+            <th>尺寸</th>
+            <th>價格</th>
+            <th>最後修改時間</th>
+            <th>產品內容</th>
         </tr>
     </thead>
     <tbody>
-
-        @foreach ($news_list as $news)
+        @foreach ($product_list as $product)
         <tr>
-            <td>{{$news->title}}</td>
+            <td>{{$product->title}}</td>
             {{-- 第一種顯示檔案的方式 --}}
             {{-- <td><img width="200" src="{{asset('/storage/'.$news->image_url)}}" alt=""></td> --}}
 
             {{-- 第二種顯示檔案方式 --}}
-            <td><img width="200" src="{{$news->image_url}}" alt=""></td>
-            <td>{{$news->sub_title}}</td>
-            <td>{{$news->created_at}}</td>
+            <td><img width="200" src="{{$product->image_url}}" alt=""></td>
+            <td>{{$product->size}}</td>
+            <td>{{$product->price}}</td>
+            <td>{{$product->created_at}}</td>
         <td>
-            <a href="news/edit/{{$news->id}}" class="btn btn-sm btn-primary">編輯</a>
-            <button class="btn btn-danger btn-sm btn-delete" data-newsid="{{$news->id}}">刪除</button>
+            <a href="product/edit/{{$product->id}}" class="btn btn-sm btn-primary">編輯</a>
+            <button class="btn btn-danger btn-sm btn-delete" data-productid="{{$product->id}}">刪除</button>
             {{-- <a id="delete" href="news/destroy/{{$news->id}}" class="btn btn-sm btn-danger">刪除</a> --}}
         </td>
         </tr>
         @endforeach
+
+
     </tbody>
 </table>
 @endsection
@@ -55,10 +58,10 @@
         $(document).ready(function() {
         $('#example').DataTable();
         $('#example').on("click", ".btn-delete", function(){
-            var news_id = this.dataset.newsid;
+            var product_id = this.dataset.productid;
             var r = confirm("你確定要刪除此筆資料?");
             if (r == true) {
-                window.location.href = `/admin/news/destroy/${news_id}`
+                window.location.href = `/admin/product/destroy/${product_id}`
             }
         });
             } );

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,6 @@ class FrontController extends Controller
     public function index()
     {
         $news_list = DB::table('news')->orderBy('id','desc')->take(3) ->get();
-
         return view('front/index',compact('news_list'));
     }
 
@@ -30,14 +30,15 @@ class FrontController extends Controller
 
     public function product()
     {
-        $product_list = DB::table('products')->orderBy('id','desc')->paginate(6);
+        $product_list = Product::orderBy('id','desc')->paginate(6);
 
-        return view('front/product',compact('product_list'));
+        return view('front/product', compact('product_list'));
+
     }
 
     public function product_info($product_id)
     {
-        $product = DB::table('products')->where('id', '=', $product_id)->first();
+        $product = Product::where('id', '=', $product_id)->first();
         return view('front/product_info',compact('product'));
     }
 
