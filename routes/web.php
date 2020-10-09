@@ -21,6 +21,8 @@ Route::get('/', 'FrontController@index'); //首頁
 
 Route::get('/news', 'FrontController@news'); //新聞頁
 Route::get('/news_info/{news_id}', 'FrontController@news_info'); //新聞內頁
+Route::get('/product', 'FrontController@product'); //全館商品
+Route::get('/product_info/{product_id}', 'FrontController@product_info'); //全館商品內頁
 Route::get('/contact_us', 'FrontController@contact_us'); //聯絡我們
 
 Route::post('/store_contact', 'FrontController@store_contact'); //聯絡我們表單

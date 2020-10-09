@@ -28,6 +28,19 @@ class FrontController extends Controller
         return view('front/news_info',compact('news'));
     }
 
+    public function product()
+    {
+        $product_list = DB::table('products')->orderBy('id','desc')->paginate(6);
+
+        return view('front/product',compact('product_list'));
+    }
+
+    public function product_info($product_id)
+    {
+        $product = DB::table('products')->where('id', '=', $product_id)->first();
+        return view('front/product_info',compact('product'));
+    }
+
     public function contact_us()
     {
         return view('front/contact_us');

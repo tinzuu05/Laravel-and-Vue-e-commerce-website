@@ -33,6 +33,9 @@
                     <a class="nav-link" href="/news">最新消息</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/product">全館商品</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/contact_us">來信推薦</a>
                 </li>
             </ul>
