@@ -1,7 +1,8 @@
 @extends('layouts/app')
 
 @section('css')
-
+{{-- summerNote --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -33,7 +34,8 @@
       </div>
       <div class="form-group">
         <label for="content">產品內容</label>
-        <textarea name="content" class="form-control" id="content" rows="3" required></textarea>
+        <textarea id="summernote" name="editordata"></textarea>
+        {{-- <textarea name="content" class="form-control" id="content" rows="3" required></textarea> --}}
       </div>
     <button type="submit" class="btn btn-primary">送出新增</button>
 </form>
@@ -41,5 +43,11 @@
 @endsection
 
 @section('js')
-
+{{-- summerNote --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+</script>
 @endsection

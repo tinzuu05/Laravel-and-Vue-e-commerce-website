@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -15,6 +16,19 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // 關聯
+        // $product_list = Product::with('product_type')->find(1);
+        // dd($product_list->product_type->type_name);
+
+        // 無關聯
+        // $product_list = Product::find(1);
+        // $type = ProductType::where('id', '=', '$news_list-type_id')->get();
+        // $types = ProductType:: all();
+
+        // 尋找關聯類型的方式
+        // $type = ProductType::with('product')->find(1);
+        // dd($type);
+        
         $product_list = Product::all();
         return view('admin.product.index', compact('product_list'));
     }
