@@ -8,11 +8,11 @@ class Product extends Model
 {
     //
     protected $fillable = [
-        'title', 'size', 'price', 'image_url', 'content', 'type_id'
+        'title', 'size', 'price', 'image_url', 'content', 'product_type_id'
     ];
 
     public function product_type()
     {
-        return $this->belongsTo('App\Product','type_id');
+        return $this->belongsTo('App\ProductType');
     }
 }

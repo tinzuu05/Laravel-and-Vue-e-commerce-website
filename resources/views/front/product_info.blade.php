@@ -21,6 +21,7 @@
                     <div class="col-12 my-3 my-md-0 col-md-6">
                         <div class="info_content">
                             <h2 class="product_title">{{$product->title}}</h2>
+                           <div>產品類別：{{$product->product_type->type_name}}</div>
                             <small class="text-primary">尺寸{{$product->size}}</small>
                             <h3>{{$product->price}}元</h3>
                             {{$product->content}}

@@ -17,6 +17,14 @@
 <form method="POST" action="/admin/product/store" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
+        <label for="product_type_id">商品類別</label>
+        <select class="form-control" name="product_type_id" id="product_type_id">
+            @foreach ($product_types as $product_type)
+        <option value="{{$product_type->id}}">{{$product_type->type_name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         <label for="title">標題<small class="text-danger">(限制至多20字)</small></label>
         <input name="title" type="text" class="form-control" id="title" required>
     </div>
@@ -34,8 +42,8 @@
       </div>
       <div class="form-group">
         <label for="content">產品內容</label>
-        <textarea id="summernote" name="editordata"></textarea>
-        {{-- <textarea name="content" class="form-control" id="content" rows="3" required></textarea> --}}
+        {{-- <textarea id="summernote" name="editordata"></textarea> --}}
+        <textarea name="content" class="form-control" id="content" rows="3" required></textarea>
       </div>
     <button type="submit" class="btn btn-primary">送出新增</button>
 </form>
@@ -44,10 +52,12 @@
 
 @section('js')
 {{-- summerNote --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> --}}
+{{-- <script>
     $(document).ready(function() {
-        $('#summernote').summernote();
+        $('#summernote').summernote({
+
+        });
     });
-</script>
+</script> --}}
 @endsection

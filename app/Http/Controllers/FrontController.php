@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Place;
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,16 +31,24 @@ class FrontController extends Controller
 
     public function product()
     {
-        $product_list = Product::orderBy('id','desc')->paginate(6);
+        // $product_list = Product::orderBy('id','desc')->paginate(6);
 
-        return view('front/product', compact('product_list'));
+        // return view('front/product', compact('product_list'));
+
+
+        $product_types = ProductType::with('product')->get();
+        // dd($product_types);
+        return view('front.product',compact('product_types'));
 
     }
 
     public function product_info($product_id)
     {
-        $product = Product::where('id', '=', $product_id)->first();
+        // $product = Product::where('id', '=', $product_id)->first();
+        $product = Product::find($product_id);
+        // dd($product);
         return view('front/product_info',compact('product'));
+
     }
 
     public function contact_us()
@@ -70,4 +79,5 @@ class FrontController extends Controller
 
         return "新增成功";
     }
+
 }

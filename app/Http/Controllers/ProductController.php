@@ -28,7 +28,7 @@ class ProductController extends Controller
         // 尋找關聯類型的方式
         // $type = ProductType::with('product')->find(1);
         // dd($type);
-        
+
         $product_list = Product::all();
         return view('admin.product.index', compact('product_list'));
     }
@@ -40,7 +40,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $product_types = ProductType::all();
+        return view('admin.product.create',compact('product_types'));
     }
 
     /**
