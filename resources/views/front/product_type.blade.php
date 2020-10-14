@@ -11,11 +11,18 @@
         <div class="title">產品分類頁</div>
         <div class="lists">
             <div class="mb-3">
+                {{-- {{$product_type}}
+                {{$products}} --}}
             <h1>{{$product_type->type_name}}</h1>
             <div class="row">
-                {{-- @foreach ($collection as $item)
-
-                @endforeach --}}
+                @foreach ($products as $product)
+                <div class="col-md-4">
+                    <div class="news_list">
+                    <h3>{{$product->title}}</h3>
+                    <a class="btn btn-primary" href="/product_info/{{$product->id}}">查看更多</a>
+                    </div>
+                </div>
+                @endforeach
             </div>
             </div>
         </div>

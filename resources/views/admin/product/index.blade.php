@@ -31,7 +31,11 @@
     <tbody>
         @foreach ($product_list as $product)
         <tr>
-            <td>{{$product->product_type->type_name}}</td>
+            <td>
+                @if($product->product_type)
+                    {{$product->product_type->type_name}}
+                @endif
+            </td>
             <td>{{$product->title}}</td>
             {{-- 第一種顯示檔案的方式 --}}
             {{-- <td><img width="200" src="{{asset('/storage/'.$news->image_url)}}" alt=""></td> --}}

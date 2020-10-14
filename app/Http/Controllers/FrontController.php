@@ -47,7 +47,7 @@ class FrontController extends Controller
         $product_type = ProductType::find($product_type_id);
         $products = $product_type->product;
 
-        return view('front.product_type',compact('product_type'));
+        return view('front.product_type',compact('product_type','products'));
     }
 
     public function product_info($product_id)

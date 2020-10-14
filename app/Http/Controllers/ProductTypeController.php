@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\ProductType;
 use Illuminate\Http\Request;
 
@@ -87,7 +88,11 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
+        // 刪除目前類別
         ProductType::destroy($id);
+
+        // 刪除該類別旗下產品
+        Product::where('product_type_id',$id)->delete();
 
         return redirect()->route('product_type.index');
     }
