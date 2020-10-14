@@ -7,49 +7,37 @@
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">後臺</a></li>
-      <li class="breadcrumb-item active" aria-current="page">產品管理</li>
+      <li class="breadcrumb-item"><a href="/admin">後臺</a></li>
+      <li class="breadcrumb-item active" aria-current="page">產品類別管理</li>
     </ol>
   </nav>
 
-  <a href="/admin/product/create" class="btn btn-success mb-3">新增產品</a>
+  <a href="/admin/product_type/create" class="btn btn-success mb-3">新增產品類別</a>
 
   <table id="example" class="table table-striped table-bordered" style="width:100%">
     {{-- {{$news_list}} --}}
     <thead>
         <tr>
-            <th>類別</th>
-            <th>標題</th>
-            <th>圖片</th>
-            <th>尺寸</th>
-            <th>價格</th>
+            <th>類別名稱</th>
             <th>排序</th>
-            <th>最後修改時間</th>
-            <th>產品內容</th>
+            <th width="80">功能</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($product_list as $product)
+        @foreach ($product_types as $product_type)
         <tr>
-            <td>{{$product->product_type->type_name}}</td>
-            <td>{{$product->title}}</td>
-            {{-- 第一種顯示檔案的方式 --}}
-            {{-- <td><img width="200" src="{{asset('/storage/'.$news->image_url)}}" alt=""></td> --}}
-
-            {{-- 第二種顯示檔案方式 --}}
-            <td><img width="200" src="{{$product->image_url}}" alt=""></td>
-            <td>{{$product->size}}</td>
-            <td>{{$product->price}}</td>
-            <td>{{$product->sort}}</td>
-            <td>{{$product->created_at}}</td>
-        <td>
-            <a href="product/edit/{{$product->id}}" class="btn btn-sm btn-primary">編輯</a>
-            <button class="btn btn-danger btn-sm btn-delete" data-productid="{{$product->id}}">刪除</button>
-            {{-- <a id="delete" href="news/destroy/{{$news->id}}" class="btn btn-sm btn-danger">刪除</a> --}}
-        </td>
+            <td>{{$product_type->type_name}}</td>
+            <td>{{$product_type->sort}}</td>
+            <td>
+                <a href="/admin/product_type/{{$product_type->id}}/edit" class="btn btn-sm btn-primary">編輯</a>
+                <button class="btn btn-danger btn-sm btn-delete" data-productid="{{$product_type->id}}">刪除</button>
+                <form id="delete-form-{{$product_type->id}}" action="/admin/product_type/{{$product_type->id}}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </td>
         </tr>
         @endforeach
-
 
     </tbody>
 </table>
@@ -58,9 +46,10 @@
 @section('js')
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function() {
-        $('#example').DataTable({"order": [[ 5, "desc" ]],
+        $('#example').DataTable({"order": [[ 1, "desc" ]],
         language: {
             "processing":   "處理中...",
             "loadingRecords": "載入中...",
@@ -85,13 +74,25 @@
     });
 
         $('#example').on("click", ".btn-delete", function(){
-            var product_id = this.dataset.productid;
-            var r = confirm("你確定要刪除此筆資料?");
-            if (r == true) {
-                window.location.href = `/admin/product/destroy/${product_id}`
-            }
-        });
-            } );
+            var product_type_id = this.dataset.ptid;
+
+            console.log(product_type_id);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $('#delete-form-'+product_type_id).submit();
+                }
+             })
+            });
+            });
 
     </script>
 

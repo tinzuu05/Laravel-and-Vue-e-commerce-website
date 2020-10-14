@@ -10,6 +10,15 @@
         <h2 class="news_title mt-5 mb-5">最新商品</h2>
         <div class="row">
 
+            <div>
+                @foreach ($product_types as $product_type)
+                <li>
+                <a href="/product_type/{{$product_type->id}}">{{$product_type->type_name}}</a>
+                </li>
+
+                @endforeach
+            </div>
+
 @foreach ($product_types as $product_type)
             <div class="mb-3">
                 <h1>{{$product_type->type_name}}</h1>

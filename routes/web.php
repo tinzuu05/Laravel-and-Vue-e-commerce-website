@@ -22,6 +22,7 @@ Route::get('/', 'FrontController@index'); //首頁
 Route::get('/news', 'FrontController@news'); //新聞頁
 Route::get('/news_info/{news_id}', 'FrontController@news_info'); //新聞內頁
 Route::get('/product', 'FrontController@product'); //全館商品
+Route::get('/product_type/{product_type_id}', 'FrontController@product_type'); //全館商品
 Route::get('/product_info/{product_id}', 'FrontController@product_info'); //全館商品內頁
 Route::get('/contact_us', 'FrontController@contact_us'); //聯絡我們
 
@@ -51,5 +52,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/product/destroy/{product_id}', 'ProductController@destroy');
 
 
-    Route::get('/product_type/{product_type_id}', 'ProductTypeController@index');
+    // product_type後台
+    Route::resource('product_type', 'ProductTypeController');
 });
