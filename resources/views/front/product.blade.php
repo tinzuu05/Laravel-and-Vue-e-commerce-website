@@ -32,7 +32,7 @@
                           <h5 class="product_title">{{$product->title}}</h5>
                           <small class="product_size text-primary">尺寸-{{$product->size}}</small>
                           <h5 class="price primary">{{$product->price}}元</h5>
-                          <p class="content">{{$product->content}}</p>
+                          <p class="content">{!!$product->content!!}</p>
                         <a href="/product_info/{{$product->id}}" class="btn btn-primary">商品詳情</a>
                         </div>
                     </div>

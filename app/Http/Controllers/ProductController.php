@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductImg;
 use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -52,16 +53,35 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // $files = $request->file('multiple_images');
+
+        // dd($files);
         $requestData = $request->all();
 
-        // 第二種取得檔案的方式，需新增private function fileUpload($file,$dir)
+        // // 第二種取得檔案的方式，需新增private function fileUpload($file,$dir)
         if ($request->hasFile('image_url')) {
             $file = $request->file('image_url');
             $path = $this->fileUpload($file, 'news');  //$this表示NewsController自己本身
             $requestData['image_url'] = $path;
         }
 
-        Product::create($requestData);
+        $product = Product::create($requestData);
+        $product_id = $product->id;
+
+        // 多圖上傳(使用第二種方式)
+        if ($request->hasFile('multiple_images')) {
+            $files = $request->file('multiple_images');
+            foreach( $files as $file){
+                $path = $this->fileUpload($file, 'product');
+                ProductImg::create([
+                    'img_url' => $path,
+                    'product_id' => $product_id,
+                ]);
+            }
+
+        }
+
+        // Product::create($requestData);
 
         return redirect('/admin/product');
     }
@@ -86,8 +106,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-
         $product = Product::find($id);
+        // dd($product ->productImgs);
         $product_types = ProductType::all();
         return view('admin.product.edit', compact('product','product_types'));
     }

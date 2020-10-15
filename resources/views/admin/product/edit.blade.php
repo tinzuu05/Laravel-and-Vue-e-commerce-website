@@ -39,10 +39,16 @@
         <label for="image_url">原始主要圖片</label>
         <div><img src="{{$product->image_url}}" alt=""  style="width:200px"></div>
       </div>
-      <div class="form-group">
+    <div class="form-group">
         <label for="image_url">更新主要圖片<small class="text-danger">(建議圖片寬高比例為4比3)</small></label>
         <input name="image_url" type="file" class="form-control-file" id="image_url">
-      </div>
+    </div>
+    <div>
+        多圖
+        @foreach ($product->productImgs as $productImg)
+            <img height="200" src="{{$productImg->img_url}}" alt="">
+        @endforeach
+    </div>
       <div class="form-group">
         <label for="content">產品內容</label>
         <textarea name="content" class="form-control" id="content" rows="3" required>{{$product->content}}</textarea>

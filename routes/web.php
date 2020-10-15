@@ -35,6 +35,10 @@ Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
+    // ajax summernote images
+    Route::post('/ajax_upload_img','AdminController@ajax_upload_img');
+    Route::post('/ajax_delete_img','AdminController@ajax_delete_img');
+
     // news後台
     Route::get('/news', 'NewsController@index');
     Route::get('/news/create', 'NewsController@create');

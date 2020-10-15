@@ -41,8 +41,12 @@
         <input name="image_url" type="file" class="form-control-file" id="image_url">
       </div>
       <div class="form-group">
+        <label for="multiple_images">內頁多張圖片<small class="text-danger">(建議圖片寬高比例為4比3)</small></label>
+        <input name="multiple_images[]" type="file" class="form-control-file" id="multiple_images" multiple required>
+      </div>
+      <div class="form-group">
         <label for="content">產品內容</label>
-        {{-- <textarea id="summernote" name="editordata"></textarea> --}}
+        {{-- <textarea name="content" id="content" required></textarea> --}}
         <textarea name="content" class="form-control" id="content" rows="3" required></textarea>
       </div>
     <button type="submit" class="btn btn-primary">送出新增</button>
@@ -52,12 +56,69 @@
 
 @section('js')
 {{-- summerNote --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#summernote').summernote({
-
+        $('#content').summernote({
+            callbacks: {
+                onImageUpload: function(files) {
+                    for(let i=0; i < files.length; i++) {
+                        $.upload(files[i]);
+                    }
+                },
+                onMediaDelete : function(target) {
+                    $.delete(target[0].getAttribute("src"));
+                }
+            },
         });
-    });
-</script> --}}
+
+
+        $.upload = function (file) {
+            let out = new FormData();
+            out.append('file', file, file.name);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: 'POST',
+                url: '/admin/ajax_upload_img',
+                contentType: false,
+                cache: false,
+                processData: false,
+                data: out,
+                success: function (img) {
+                    $('#content').summernote('insertImage', img);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+            });
+        };
+
+        $.delete = function (file_link) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: 'POST',
+                url: '/admin/ajax_delete_img',
+                data: {file_link:file_link},
+                success: function (img) {
+                    console.log("delete:",img);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+            });
+        }
+   });
+</script>
 @endsection
+
