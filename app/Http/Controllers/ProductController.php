@@ -31,6 +31,10 @@ class ProductController extends Controller
         // dd($type);
 
         $product_list = Product::all();
+        //解構json物件
+        // $product = Product::find(28);
+        // $object = json_decode($product->product_info);
+        // dd($object);
         return view('admin.product.index', compact('product_list'));
     }
 
@@ -57,6 +61,8 @@ class ProductController extends Controller
 
         // dd($files);
         $requestData = $request->all();
+        $size = $request->size;
+        $amount = $request->amount;
 
         // // 第二種取得檔案的方式，需新增private function fileUpload($file,$dir)
         if ($request->hasFile('image_url')) {
@@ -66,6 +72,14 @@ class ProductController extends Controller
         }
 
         $product = Product::create($requestData);
+        //將多個不同資料儲存在一起
+        //要儲存的資料打包成陣列/物件
+        $product_info = ['size'=>$size,'amount'=> $amount];
+        //儲存剛建立的資料中
+        $product ->product_info = json_encode($product_info);
+        $product->save();
+
+        //取得剛剛建立資料的id
         $product_id = $product->id;
 
         // 多圖上傳(使用第二種方式)
@@ -109,6 +123,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         // dd($product ->productImgs);
         $product_types = ProductType::all();
+        // $productImgs = ProductImg::orderBy('sort','desc')->get();
         return view('admin.product.edit', compact('product','product_types'));
     }
 
@@ -134,7 +149,8 @@ class ProductController extends Controller
         }
 
         $product->update($requestData);
-        return redirect('/admin/product');
+        //快閃資料
+        return redirect('/admin/product')->with('update','更新成功!');
     }
 
     /**

@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    @if(Session::has('update'))
+    <div class="alert alert-success" role="alert">
+        更新成功!
+    </div>
+    @endif
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">後臺</a></li>

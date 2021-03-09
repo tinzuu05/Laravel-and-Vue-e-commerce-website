@@ -36,6 +36,10 @@
         <label for="price">價格</label>
         <input name="price" type="number" class="form-control" id="price" required>
     </div>
+    <div class="form-group">
+        <label for="amount">數量</label>
+        <input name="amount" type="number" class="form-control" id="amount" required>
+    </div>
       <div class="form-group">
         <label for="image_url">上傳主要圖片<small class="text-danger">(建議圖片寬高比例為4比3)</small></label>
         <input name="image_url" type="file" class="form-control-file" id="image_url">

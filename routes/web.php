@@ -38,6 +38,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ajax summernote images
     Route::post('/ajax_upload_img','AdminController@ajax_upload_img');
     Route::post('/ajax_delete_img','AdminController@ajax_delete_img');
+    Route::post('/ajax_delete_multi_img','AdminController@ajax_delete_multi_img');
+    Route::post('/ajax_sort_multi_img','AdminController@ajax_sort_multi_img');
 
     // news後台
     Route::get('/news', 'NewsController@index');
