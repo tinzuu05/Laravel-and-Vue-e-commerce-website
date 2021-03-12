@@ -35,6 +35,12 @@ class FrontController extends Controller
 
         // return view('front/product', compact('product_list'));
 
+        //判斷是否有登入會員
+        // $user = '';
+        // if(auth()->user()){
+        //     $user = auth()->user()->id;
+        // }
+        // dd($user);
 
         $product_types = ProductType::with('product')->get();
         // dd($product_types);

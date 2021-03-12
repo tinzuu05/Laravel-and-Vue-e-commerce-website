@@ -25,7 +25,7 @@
                             <small class="text-primary">尺寸{{$product->size}}</small>
                             <h3>{{$product->price}}元</h3>
                             {!!$product->content!!}
-                            {{-- 我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容我是文章詳細內容 --}}
+                            <button class="btn btn-danger addcart" data-productid="{{$product->id}}">加入購物車</button>
                         </div>
 
                     </div>
@@ -38,4 +38,28 @@
 @section('js')
 <!-- lightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        $('.addcart').click(function () {
+            var product_id = $(this).data('productid');
+
+            $.ajaxSetup({
+                headers: {
+                    // 要與nav_footer.blade.php的meta csrf相呼應，不然會抓不到資料
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: 'POST',
+                url: '/addcart',
+                data: {product_id:product_id},
+                success: function (res) {
+                    $('#cartTotalQuantity').text(res);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+            });
+        });
+    </script>
 @endsection
