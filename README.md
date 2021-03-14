@@ -11,7 +11,7 @@
 <p>聯絡表單資料訊息與資料庫對接</p>
 <p>使用者登入畫面與管理</p>
 <p>後台CRUD訊息與商品管理系統</p>
-<p>(未完成)結帳與金流</p>
+<p>結帳頁面</p>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
