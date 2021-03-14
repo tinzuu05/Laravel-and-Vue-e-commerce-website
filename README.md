@@ -1,3 +1,18 @@
+<h1>全端電商網站- Laravel6 + Vue2 </h1>
+
+<h2>前端-</h2>
+<p>採用html,, scss, Bootstrap4框架切版</p>
+<p>Vue2做購物車頁面<p>
+<p>ajax介接api與資料庫資料</p>
+
+<h2>後端-</h2>
+<p>套用Laravel 6 MVC框架</p>
+<p>使用HeidiSQL資料庫儲存資料與Model做響應<p>
+<p>聯絡表單資料訊息與資料庫對接</p>
+<p>使用者登入畫面與管理</p>
+<p>後台CRUD訊息與商品管理系統</p>
+<p>(未完成)結帳與金流</p>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
