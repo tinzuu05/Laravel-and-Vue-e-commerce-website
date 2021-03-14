@@ -29,7 +29,8 @@ Route::get('/contact_us', 'FrontController@contact_us'); //聯絡我們
 Route::post('/store_contact', 'FrontController@store_contact'); //聯絡我們表單
 
 //Shopping cart
-Route::get('/cart','CartController@cart'); //結帳頁
+Route::get('/cart','CartController@cart'); //購物車頁
+Route::get('/checkout','CartController@checkout'); //結帳頁、填寫收件人資料與付款方式
 Route::post('/addcart', 'CartController@addcart'); //一個產品加入購物車
 Route::post('/changeProductQty','CartController@changeProductQty'); //於結帳業修改產品數量
 Route::post('/deleteProductInCart','CartController@deleteProductInCart'); //於結帳業修改產品數量

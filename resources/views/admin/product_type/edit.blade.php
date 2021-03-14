@@ -12,7 +12,7 @@
     </ol>
   </nav>
 
-<form method="POST" action="/admin/product_type//{{$product_type->id}}" enctype="multipart/form-data">
+<form method="POST" action="/admin/product_type/{{$product_type->id}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">

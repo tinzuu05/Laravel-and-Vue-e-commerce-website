@@ -30,7 +30,7 @@
             <td>{{$product_type->sort}}</td>
             <td>
                 <a href="/admin/product_type/{{$product_type->id}}/edit" class="btn btn-sm btn-primary">編輯</a>
-                <button class="btn btn-danger btn-sm btn-delete" data-ptid="{{$product_type->id}}">刪除</button>
+                <button class="btn btn-danger btn-sm btn-delete m-0" data-ptid="{{$product_type->id}}">刪除</button>
                 <form id="delete-form-{{$product_type->id}}" action="/admin/product_type/{{$product_type->id}}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')

@@ -1,24 +1,40 @@
 @extends('layouts/nav_footer')
 
 @section('css')
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+    }
+    .product_type li {
+        list-style-type:none;
+    }
 
+    .product_type li a {
+        color: gray;
+    }
+
+    .row {
+        margin:
+    }
+</style>
 @endsection
 
 @section('content')
 <section class="news">
+    <h2 class="news_title m-5">最新商品</h2>
     <div class="container">
-        <h2 class="news_title mt-5 mb-5">最新商品</h2>
-        <div class="row">
-
-            <div>
+        <div>
+            <div class="product_type">
                 @foreach ($product_types as $product_type)
                 <li>
-                <a href="/product_type/{{$product_type->id}}">{{$product_type->type_name}}</a>
+                <a href="/product_type/{{$product_type->id}}">>{{$product_type->type_name}}</a>
                 </li>
 
                 @endforeach
             </div>
-
+        </div>
+        <div class="row">
 @foreach ($product_types as $product_type)
             <div class="mb-3">
                 <h1>{{$product_type->type_name}}</h1>
@@ -33,7 +49,7 @@
                           <small class="product_size text-primary">尺寸-{{$product->size}}</small>
                           <h5 class="price primary">{{$product->price}}元</h5>
                           <p class="content">{!!$product->content!!}</p>
-                        <a href="/product_info/{{$product->id}}" class="btn btn-primary">商品詳情</a>
+                        <a href="/product_info/{{$product->id}}" class="btn btn-dark">商品詳情</a>
                         </div>
                     </div>
                 @endforeach

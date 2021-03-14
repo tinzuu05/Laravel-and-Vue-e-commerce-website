@@ -34,12 +34,12 @@
             {{-- <td><img width="200" src="{{asset('/storage/'.$news->image_url)}}" alt=""></td> --}}
 
             {{-- 第二種顯示檔案方式 --}}
-            <td><img width="200" src="{{$news->image_url}}" alt=""></td>
+            <td><img width="150" src="{{$news->image_url}}" alt=""></td>
             <td>{{$news->sub_title}}</td>
             <td>{{$news->created_at}}</td>
         <td>
             <a href="news/edit/{{$news->id}}" class="btn btn-sm btn-primary">編輯</a>
-            <button class="btn btn-danger btn-sm btn-delete" data-newsid="{{$news->id}}">刪除</button>
+            <button class="btn btn-danger btn-sm btn-delete m-0" data-newsid="{{$news->id}}">刪除</button>
             {{-- <a id="delete" href="news/destroy/{{$news->id}}" class="btn btn-sm btn-danger">刪除</a> --}}
         </td>
         </tr>

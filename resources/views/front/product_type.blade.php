@@ -8,7 +8,7 @@
 
 <section class="news" style="margin-top: 100px;">
     <div class="container">
-        <div class="title">產品分類頁</div>
+        <div class="title"><h1>產品分類頁</h1></div>
         <div class="lists">
             <div class="mb-3">
                 {{-- {{$product_type}}
@@ -18,8 +18,9 @@
                 @foreach ($products as $product)
                 <div class="col-md-4">
                     <div class="news_list">
-                    <h3>{{$product->title}}</h3>
-                    <a class="btn btn-primary" href="/product_info/{{$product->id}}">查看更多</a>
+                    <div><img src="{{$product->image_url}}" alt=""></div>
+                    <p>{{$product->title}}</p>
+                    <a class="btn btn-dark" href="/product_info/{{$product->id}}">查看更多</a>
                     </div>
                 </div>
                 @endforeach

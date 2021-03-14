@@ -16,6 +16,14 @@ class CartController extends Controller
         return view('front.cart',compact('cart_items', 'total_price'));
     }
 
+    public function checkout(){
+        $userId = auth()->user()->id; // or any string represents user identifier
+        $cart_items = \Cart::session($userId)->getContent()->sort();
+        $total_price = \Cart::session($userId)->getTotal();
+
+        return view('front.checkout',compact('cart_items', 'total_price'));
+    }
+
     public function addcart(Request $request){
         $product_id = $request->product_id;
 
@@ -23,6 +31,7 @@ class CartController extends Controller
 
         $userId = auth()->user()->id; // or any string represents user identifier
         \Cart::session($userId)->add($product_id, $product->title, $product->price, 1, array('image' => $product->image_url));
+
 
         $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
         return $cartTotalQuantity;

@@ -53,7 +53,7 @@
             <td>{{$product->created_at}}</td>
         <td>
             <a href="product/edit/{{$product->id}}" class="btn btn-sm btn-primary">編輯</a>
-            <button class="btn btn-danger btn-sm btn-delete" data-productid="{{$product->id}}">刪除</button>
+            <button class="btn btn-danger btn-sm btn-delete m-0" data-productid="{{$product->id}}">刪除</button>
             {{-- <a id="delete" href="news/destroy/{{$news->id}}" class="btn btn-sm btn-danger">刪除</a> --}}
         </td>
         </tr>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>全端班資料串接範例</title>
+    <title>全端電商網頁</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -23,7 +23,7 @@
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">台灣秘境</a>
+        <a class="navbar-brand" href="/">Elsa Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,16 +35,17 @@
                     <a class="nav-link" href="/">首頁</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/news">最新消息</a>
+                    <a class="nav-link" href="/news">即將上市</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/product">全館商品</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact_us">來信推薦</a>
+                    <a class="nav-link" href="/contact_us">聯絡我們</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
+                <a href=""><i class="far fa-user-circle text-white mr-3"></i></a>
                 <a href="/cart" class="icon-shopping-cart text-white">
                     <i class="fas fa-shopping-cart"></i>
                     <span id="cartTotalQuantity">
@@ -72,7 +73,7 @@
     </main>
 
     <footer class="container">
-        <p>&copy; 此頁面僅用於 全端班資料串接</p>
+        <p>&copy; 此頁面僅用於全端電商網頁資料串接練習</p>
     </footer>
 
 
